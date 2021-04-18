@@ -2,7 +2,7 @@
 // https://karma-runner.github.io/1.0/config/configuration-file.html
 
 module.exports = function (config) {
-  let testResultFolder = require('path').join(__dirname, 'TestResults');
+  let testResultFolder = require('path').join(__dirname, '../../TestResults');
   config.set({
     basePath: '',
     frameworks: ['jasmine', '@angular-devkit/build-angular'],
