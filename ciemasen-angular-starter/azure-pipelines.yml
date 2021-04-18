@@ -1,0 +1,33 @@
+trigger:
+  - master
+  - development
+  - backlogs/*
+
+steps:
+#Install nodejs
+  - task: NodeTool@0
+    displayName: "Install Node.js"
+    inputs:
+      versionSpec: 14.x
+
+  - task: Npm@1
+    displayName: "Install Angular cli"
+    inputs:
+      command: "custom"
+      customCommand: "install -g @angular/cli"
+      
+  - task: Npm@1
+    displayName: "Install npm packages"
+    inputs:
+      command: "install"
+      verbose: true
+
+  - task: CmdLine@2
+    displayName: "Build Angular app"
+    inputs:
+      script: 'ng build --prod'
+    
+  - task: CmdLine@2
+    displayName: "Validate Angular violations"
+    inputs:
+      script: "ng lint"
